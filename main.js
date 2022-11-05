@@ -1,61 +1,21 @@
-const list = {
-	"create a new practice task": "In Progress",
-	"make a bed": "Done",
-	"write a post": "To Do",
-	"ask about home work": "Done",
-}
+function getAverage(marks) {
+	//TODO : calculate the downward rounded average of the marks array
 
-
-function addTask(item) {
-
-	list[item] = "To Do"
-}
-function deleteTask(item) {
-	delete list[item]
-}
-
-function changeStatus(item, action) {
-	list[item] = action;
-}
-
-function showList() {
-	console.log("To Do:")
-	for (let key in list) {
-		if (list[key] == "To Do") {
-			console.log(key)
-		}
+	console.log(marks)
+	let test = 0;
+	for (value of marks) {
+		test += value
 	}
-	console.log("In Progress:")
-	for (let key in list) {
-		if (list[key] == "In Progress") {
-			console.log(key)
-		}
-	}
-	console.log("Done:")
-	for (let key in list) {
-		if (list[key] == "Done") {
-			console.log(key)
-		}
-	}
+	console.log(Math.floor(test / marks.length))
 }
 
 
 
-addTask('have a walk')
-addTask('have a lunch')
-addTask('have a breakfast')
-
-deleteTask('have a breakfast')
 
 
-changeStatus("write a post", "Done")
-changeStatus("ask about home work", "To Do")
-changeStatus("have a lunch", "In Progress")
-
-showList()
 
 
-/* for (let code in list) {
-	alert(code);
-	alert(list[code])
-} */
+getAverage([2, 2, 2, 2]);
+
+
+
