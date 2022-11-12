@@ -1,61 +1,38 @@
-const list = {
-	"create a new practice task": "In Progress",
-	"make a bed": "Done",
-	"write a post": "To Do",
-	"ask about home work": "Done",
-}
+const result = document.getElementById('result');
+button.addEventListener("click", calc);
+document.querySelector('.history').addEventListener("click", deleteHistory);
 
 
-function addTask(item) {
-
-	list[item] = "To Do"
-}
-function deleteTask(item) {
-	delete list[item]
-}
-
-function changeStatus(item, action) {
-	list[item] = action;
-}
-
-function showList() {
-	console.log("To Do:")
-	for (let key in list) {
-		if (list[key] == "To Do") {
-			console.log(key)
-		}
+function calc() {
+	const num1 = document.getElementById('firstNumber').value;
+	const num2 = document.getElementById('secondNumber').value;
+	const action = document.getElementById('mathActions').value;
+	switch (action) {
+		case '+':
+			result.textContent = +num1 + +num2;
+			break;
+		case '-':
+			result.textContent = num1 - num2;
+			break;
+		case '*':
+			result.textContent = num1 * num2;
+			break;
+		case '/':
+			result.textContent = num1 / num2;
+			break;
 	}
-	console.log("In Progress:")
-	for (let key in list) {
-		if (list[key] == "In Progress") {
-			console.log(key)
-		}
-	}
-	console.log("Done:")
-	for (let key in list) {
-		if (list[key] == "Done") {
-			console.log(key)
-		}
-	}
+
+	let div = document.createElement('div');
+	div.innerHTML = result.textContent; //textContent
+	document.querySelector('.history').append(div);
+
+
 }
 
+function deleteHistory() {
+	document.querySelector('.history').addEventListener('click', (e) => {
+		const targetResult = e.target;
+		targetResult.remove();
+	});
 
-
-addTask('have a walk')
-addTask('have a lunch')
-addTask('have a breakfast')
-
-deleteTask('have a breakfast')
-
-
-changeStatus("write a post", "Done")
-changeStatus("ask about home work", "To Do")
-changeStatus("have a lunch", "In Progress")
-
-showList()
-
-
-/* for (let code in list) {
-	alert(code);
-	alert(list[code])
-} */
+} 
