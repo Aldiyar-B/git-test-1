@@ -1,13 +1,33 @@
 
-const serverUrl = 'https://api.genderize.io';
-
 let input = document.querySelector('.content');
 input.addEventListener('submit', (event) => {
 	event.preventDefault();
-	f(document.querySelector('.input').value)
+
+	const serverUrl = 'https://api.genderize.io';
+	f(serverUrl, document.querySelector('.input').value)
 })
 
-async function f(userName) {
+
+function f(serverUrl, userName) {
+
+	fetch(`${serverUrl}?name=${userName}`)
+		.then((response) => response.json())
+		.then(function (response) {
+			let gender = response.gender;
+			console.log(`${userName} is ${gender}`)
+			document.querySelector('.result').append(`${userName} is ${gender}`)
+		})
+}
+
+
+
+
+
+
+
+
+
+/* async function f(userName) {
 	const url = `${serverUrl}?name=${userName}`;
 	const response = await fetch(url);
 	const data = await response.json();
@@ -15,4 +35,4 @@ async function f(userName) {
 
 	console.log(`${userName} is ${gender}`)
 
-}
+} */
