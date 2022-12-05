@@ -3,6 +3,14 @@ const SERVER = {
 	API_KEY: 'f660a2fb1e4bad108d6160b7f58c555f'
 }
 
+const DETAILS = {
+	CITY: document.querySelector('.details__city'),
+	TEMPERATURE: document.querySelector('.details__temperature'),
+	FEELS: document.querySelector('.details__feels-like'),
+	WEATHER: document.querySelector('.details__weather'),
+	SUNRISE: document.querySelector('.details__sunrise'),
+	SUNSET: document.querySelector('.details__sunset'),
+}
 
 
 const weatherBattons = document.querySelector('.weather__buttons');
@@ -44,30 +52,27 @@ form.addEventListener('submit', (event) => {
 	event.preventDefault();
 
 
-	showTemperature(needCity.value)
+	getRequest(needCity.value)
 
 
 })
 
-
-function showTemperature(cityName) {
+function getRequest(cityName) {
 	fetch(`${SERVER.URL}?q=${cityName}&appid=${SERVER.API_KEY}`)
 		.then((response) => response.json())
 		.then(function (response) {
-
-			//let temp = response.main.temp
-			let tempInCelsius = conversionToCelsius(response.main.temp)
-			document.querySelector('.now__temperature').textContent = tempInCelsius.toFixed(1) + '℃'
-			console.log(response.name)
-
-			document.querySelector('.now__city').textContent = response.name;
+			console.log(response)
+			showTemperature(response)
+			showDetails(response)
 		})
-		.catch((error) => {
-			if (error) {
-				alert('Ошибка')
-			}
+}
+function showTemperature(response) {
+	//let temp = response.main.temp
+	let tempInCelsius = conversionToCelsius(response.main.temp)
+	document.querySelector('.now__temperature').textContent = tempInCelsius.toFixed(1) + '℃'
 
-		});
+	document.querySelector('.now__city').textContent = response.name;
+
 
 }
 function showTemperatureAgain(cityName) {
@@ -85,6 +90,22 @@ function showTemperatureAgain(cityName) {
 
 }
 
+function showDetails(response) {
+	DETAILS.CITY.textContent = response.name;
+	DETAILS.TEMPERATURE.textContent = conversionToCelsius(response.main.temp).toFixed(1);
+	DETAILS.FEELS.textContent = conversionToCelsius(response.main.feels_like).toFixed(1);
+	DETAILS.WEATHER.textContent = response.weather[0].main;
+	DETAILS.SUNRISE.textContent = timeConverter(response.sys.sunrise);
+	DETAILS.SUNSET.textContent = timeConverter(response.sys.sunset);
+
+}
+function timeConverter(UNIX_timestamp) {
+	let a = new Date(UNIX_timestamp * 1000);
+	let hour = a.getHours();
+	let min = a.getMinutes();
+	let time = hour + ':' + min + '';
+	return time;
+}
 function conversionToCelsius(tempInKelvins) {
 	return (tempInKelvins - 273);
 }
@@ -173,3 +194,5 @@ function showAgain(cityName) {
 	showTemperatureAgain(cityName)
 	render();
 }
+
+
