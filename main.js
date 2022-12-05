@@ -79,7 +79,7 @@ function showTemperatureAgain(cityName) {
 	fetch(`${SERVER.URL}?q=${cityName}&appid=${SERVER.API_KEY}`)
 		.then((response) => response.json())
 		.then(function (response) {
-
+			showDetails(response)
 			//let temp = response.main.temp
 			let tempInCelsius = conversionToCelsius(response.main.temp)
 			document.querySelector('.now__temperature').textContent = tempInCelsius.toFixed(1) + '℃'
