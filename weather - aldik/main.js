@@ -1,3 +1,9 @@
+import { compareAsc, format } from 'date-fns'
+
+format(new Date(2014, 1, 11), 'yyyy-MM-dd')
+//=> '2014-02-11'
+
+
 const SERVER = {
 	URL: 'https://api.openweathermap.org/data/2.5/weather',
 	API_KEY: 'f660a2fb1e4bad108d6160b7f58c555f'
@@ -57,14 +63,16 @@ form.addEventListener('submit', (event) => {
 
 })
 
-function getRequest(cityName) {
-	fetch(`${SERVER.URL}?q=${cityName}&appid=${SERVER.API_KEY}`)
-		.then((response) => response.json())
-		.then(function (response) {
-			console.log(response)
-			showTemperature(response)
-			showDetails(response)
-		})
+async function getRequest(cityName) {
+	try {
+		let data = await fetch(`${SERVER.URL}?q=${cityName}&appid=${SERVER.API_KEY}`);
+		let response = await data.json();
+		showTemperature(response)
+		showDetails(response)
+	} catch (error) {
+		alert(`${error.name} - Введите корректное название`)
+	}
+
 }
 function showTemperature(response) {
 	//let temp = response.main.temp
