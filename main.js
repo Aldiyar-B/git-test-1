@@ -1,38 +1,25 @@
-const result = document.getElementById('result');
-button.addEventListener("click", calc);
-document.querySelector('.history').addEventListener("click", deleteHistory);
+class User {
+	constructor(first, last) {
+		this.first = first;
+		this.last = last;
 
-
-function calc() {
-	const num1 = document.getElementById('firstNumber').value;
-	const num2 = document.getElementById('secondNumber').value;
-	const action = document.getElementById('mathActions').value;
-	switch (action) {
-		case '+':
-			result.textContent = +num1 + +num2;
-			break;
-		case '-':
-			result.textContent = num1 - num2;
-			break;
-		case '*':
-			result.textContent = num1 * num2;
-			break;
-		case '/':
-			result.textContent = num1 / num2;
-			break;
 	}
 
-	let div = document.createElement('div');
-	div.innerHTML = result.textContent; //textContent
-	document.querySelector('.history').append(div);
+	set first(value) {
+		this.firstName = value.toUpperCase();
+	}
+	set last(value) {
+		this.lastName = value.toUpperCase();
+	}
+	get fullName() {
+		return this.firstName + " " + this.lastName;
+	}
+};
 
 
-}
 
-function deleteHistory() {
-	document.querySelector('.history').addEventListener('click', (e) => {
-		const targetResult = e.target;
-		targetResult.remove();
-	});
+let user1 = new User('Vlad', 'Kapustin')
+let user2 = new User('Ivan', 'Semenov')
 
-} 
+console.log(user1.fullName)
+console.log(user2.fullName)
