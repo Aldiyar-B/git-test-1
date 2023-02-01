@@ -1,84 +1,60 @@
-/* const person = new Object({
-	name: 'Mikhail',
-	age: 18,
-	hobby: 'sport',
-	hi: function () {
-		console.log('hiii!')
+class Person {
+
+	/* birthday() {
+		console.log(this.name, 'отпраздновал', this.age);
 	}
-})
 
-Object.prototype.sayGoodBye = function () {
-	console.log('Good bye!')
-}
-
-Object.prototype.sayGoodBye = function () {
-	console.log('poka')
-}
-
-const Aldi = Object.create(person)
-
-Aldi.name = 'Aldik';
-
-const dog = 'I am a dog' */
-
-
-//Значение this
-/* const animal = {
-	walk() {
-		if (!this.isSleeping) {
-			console.log('I walk')
-		}
-	},
+	eat() {
+		console.log(this.age, 'идет поесть')
+	}
 
 	sleep() {
-		this.isSleeping = true;
-		console.log('I sleep')
+		console.log(this.name, 'идет Поспать')
+	} */
+	constructor(name, age, sex) {
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
 	}
-};
-
-let rabbit = {
-	name: "Bags Bonny",
-	__proto__: animal,
-
-}
-
-let penguin = {
-	name: 'Rico',
-	__proto__: animal,
-
-} */
-
-// Цикл For..in
-
-
-const animal = {
-	walk() {
-		if (!this.isSleeping) {
-			console.log('I walk')
-		}
-	},
-
-	sleep() {
-		this.isSleeping = true;
-		console.log('I sleep')
+	welcome() {
+		console.log('Hello', this.name)
+		console.log('your age is', this.age)
+		console.log('Your sex is', this.sex)
 	}
-};
-
-let rabbit = {
-	name: "Bags Bonnny",
-	__proto__: animal,
-
 }
 
-let penguin = {
-	name: 'Rico',
-	__proto__: animal,
-
+class Student extends Person {
+	constructor(name, age, sex, gpa) {
+		super(name, age, sex);
+		this.gpa = gpa;
+	}
+	hello() {
+		super.welcome();
+		console.log('Your gpa is ', this.gpa)
+	}
 }
 
-console.log(Object.keys(penguin))
-
-for (let key in penguin) {
-
-	console.log(key);
+class Teacher extends Person {
+	constructor(name, age, sex, classSize) {
+		super(name, age, sex);
+		this.classSize = classSize;
+	}
+	hello() {
+		super.welcome();
+		console.log('Your class size if', this.classSize)
+	}
 }
+
+let person = new Person('Aldi', 19, 'man');
+
+let person2 = new Person('Erke', 17, 'woman');
+
+
+let student = new Student('Moka', 18, 'man', 5.0);
+
+let teacher = new Teacher('Marya Ivanovna', 45, 'woman', 23)
+
+
+student.hello()
+console.log('    ')
+teacher.hello()
