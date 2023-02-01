@@ -65,7 +65,7 @@ const animal = {
 };
 
 let rabbit = {
-	name: "Bags Bonny",
+	name: "Bags Bonnny",
 	__proto__: animal,
 
 }
