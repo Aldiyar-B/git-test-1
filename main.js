@@ -1,38 +1,31 @@
-const result = document.getElementById('result');
-button.addEventListener("click", calc);
-document.querySelector('.history').addEventListener("click", deleteHistory);
+/* 
+// 1. Создаём новый XMLHttpRequest-объект
+let xhr = new XMLHttpRequest;
 
+// 2. Настраиваем его: GET-запрос по URL /article/.../load
+xhr.open('GET', '/article/xmlhttprequest/example/load');
 
-function calc() {
-	const num1 = document.getElementById('firstNumber').value;
-	const num2 = document.getElementById('secondNumber').value;
-	const action = document.getElementById('mathActions').value;
-	switch (action) {
-		case '+':
-			result.textContent = +num1 + +num2;
-			break;
-		case '-':
-			result.textContent = num1 - num2;
-			break;
-		case '*':
-			result.textContent = num1 * num2;
-			break;
-		case '/':
-			result.textContent = num1 / num2;
-			break;
+// 3. Отсылаем запрос
+xhr.send();
+
+// 4. Этот код сработает после того, как мы получим ответ сервера
+xhr.onload = function () {
+	if (xhr.status != 200) {
+		alert(`Ошибка ${xhr.status}:  ${xhr.statusText}`)
+	} else {
+		alert(`Готово, получили ${xhr.response.length} байт `)
 	}
+};
 
-	let div = document.createElement('div');
-	div.innerHTML = result.textContent; //textContent
-	document.querySelector('.history').append(div);
+xhr.onprogress = function (event) {
+	if (event.lengthComputable) {
+		alert(`Получено ${event.loaded} из ${event.total} байт`)
+	} else {
+		alert(`Получено ${event.loaded} байт`);
+	}
+};
 
-
+xhr.onerror = function () {
+	alert(`Запрос не удался`)
 }
-
-function deleteHistory() {
-	document.querySelector('.history').addEventListener('click', (e) => {
-		const targetResult = e.target;
-		targetResult.remove();
-	});
-
-} 
+ */
