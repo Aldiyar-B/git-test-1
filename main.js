@@ -20,20 +20,19 @@ messageForm.addEventListener('submit', function (event) {
 function sendMessage(message) {
 	console.log(message)
 	messageElement.querySelector('.message-username').textContent = message.username;
-	messageElement.querySelector('.message-email').textContent = message.email;
-	messageElement.querySelector('.message-text').textContent = message.text;
+/* 	messageElement.querySelector('.message-email').textContent = message.email;
+ */	messageElement.querySelector('.message-text').textContent = message.text;
 	let room = document.createElement('div');
 
 
-	let shape = `
-		<div>${message.username}:</div>
-		<div>${message.text}</div>
-`;
+	/* 	let shape = `
+			<div>${message.username}:</div>
+			<div>${message.text}</div>
+	`;
+	
+		room.innerHTML = shape; */
 
-	room.innerHTML = shape;
-
-	content.append(room)
+	let newEl = messageElement.cloneNode(true);
+	content.append(newEl)
 
 }
-
-
