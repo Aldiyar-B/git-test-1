@@ -5,52 +5,43 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title></title>
-
-	<style>
-		.calculator {
-			text-align: center;
-			line-height: 20px;
-
-		}
-
-		.lastResult {
-			background-color: green;
-			margin-top: 30px;
-		}
-
-		.history {
-			margin-left: 300px;
-			margin-top: 50px;
-			text-align: left;
-		}
-	</style>
+	<title>To Do UI</title>
+	<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
 
-	<div class="calculator" id="calculator">
-		<input type="text" id="firstNumber" value="5">
+	<main>
+		<header>
+			<button>Настройки</button>
+			<button>Выйти</button>
+		</header>
+		<div class="content"></div>
+		<div class="message-box">
+			<form class="message-form">
+				<input class="message-text" type="text" placeholder="сообщение...">
+				<button class="message-btn" type="submit">=></button>
+			</form>
+		</div>
+	</main>
+	<template id="message-template">
+		<div class="message message-my">
+			<span class="message-username"></span>
+			<span class="message-email"></span>
+			<p class="message-text"></p>
+		</div>
+	</template>
+	<template id="message-template">
+		<div class="message message-other">
+			<span class="message-username"></span>
+			<span class="message-email"></span>
+			<p class="message-text"></p>
+		</div>
+	</template>
 
-		<select id="mathActions">
-			<option value="+">+</option>
-			<option value="-">-</option>
-			<option value="*">*</option>
-			<option value="/">/</option>
-		</select>
 
-
-		<input type="text" id="secondNumber" value="5">
-
-		<button id="button">=</button>
-		<span id="result"></span>
-		<div class="history"></div>
-	</div>
-
-
-
-
-	<script src="main.js"></script>
 </body>
+<script src="main.js"></script>
+<!-- СВЕРХУ БЫЛО /MAIN.JS -->
 
 </html>
